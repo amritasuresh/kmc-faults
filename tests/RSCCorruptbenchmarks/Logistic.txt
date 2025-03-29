@@ -1,0 +1,121 @@
+scm Logistic :
+nb_channels = 6 ;
+parameters:
+real ConfirmationofDeliverySchedule ;
+real OrderDeliveryVariations ;
+real POandDeliveryScheduleMods ;
+real DeliverCheckPointRequest ;
+real AcceptPOandDeliverySchedule ;
+real PlannedOrderVariations ;
+real UpdatePOandDeliverySchedule ;
+real ShippingDone ;
+real DeliverItem ;
+real ProvideItem ;
+real FinalizedPOandDeliverySchedule ;
+automaton A0 :
+initial : 0
+state 0 :
+to 1 : when true, 0 ! ShippingDone;
+to 1 : when true, 0 ! FinalizedPOandDeliverySchedule;
+to 1 : when true, 0 ! PlannedOrderVariations;
+to 1 : when true, 0 ! ProvideItem;
+to 1 : when true, 0 ! UpdatePOandDeliverySchedule;
+to 1 : when true, 0 ! ConfirmationofDeliverySchedule;
+state 1 :
+to 4 : when true, 3 ? OrderDeliveryVariations;
+state 2 :
+to 3 : when true, 0 ! UpdatePOandDeliverySchedule;
+to 3 : when true, 0 ! FinalizedPOandDeliverySchedule;
+to 3 : when true, 0 ! ProvideItem;
+to 3 : when true, 0 ! ShippingDone;
+to 3 : when true, 0 ! PlannedOrderVariations;
+to 3 : when true, 0 ! ConfirmationofDeliverySchedule;
+state 3 :
+state 4 :
+to 5 : when true, 3 ? DeliverCheckPointRequest;
+state 5 :
+to 6 : when true, 2 ! ProvideItem;
+to 6 : when true, 2 ! PlannedOrderVariations;
+to 6 : when true, 2 ! UpdatePOandDeliverySchedule;
+to 6 : when true, 2 ! FinalizedPOandDeliverySchedule;
+to 8 : when true, 2 ! ShippingDone;
+to 8 : when true, 2 ! ConfirmationofDeliverySchedule;
+to 8 : when true, 2 ! UpdatePOandDeliverySchedule;
+to 6 : when true, 2 ! ConfirmationofDeliverySchedule;
+to 8 : when true, 2 ! FinalizedPOandDeliverySchedule;
+to 8 : when true, 2 ! ProvideItem;
+to 6 : when true, 2 ! ShippingDone;
+to 8 : when true, 2 ! PlannedOrderVariations;
+state 6 :
+to 5 : when true, 5 ? DeliverItem;
+state 7 :
+to 8 : when true, 4 ? DeliverItem;
+state 8 :
+to 9 : when true, 1 ! ProvideItem;
+to 7 : when true, 1 ! ConfirmationofDeliverySchedule;
+to 9 : when true, 1 ! FinalizedPOandDeliverySchedule;
+to 7 : when true, 1 ! UpdatePOandDeliverySchedule;
+to 7 : when true, 1 ! ShippingDone;
+to 7 : when true, 1 ! ProvideItem;
+to 9 : when true, 1 ! ConfirmationofDeliverySchedule;
+to 9 : when true, 1 ! PlannedOrderVariations;
+to 7 : when true, 1 ! PlannedOrderVariations;
+to 7 : when true, 1 ! FinalizedPOandDeliverySchedule;
+to 9 : when true, 1 ! ShippingDone;
+to 9 : when true, 1 ! UpdatePOandDeliverySchedule;
+state 9 :
+to 10 : when true, 0 ! UpdatePOandDeliverySchedule;
+to 10 : when true, 0 ! FinalizedPOandDeliverySchedule;
+to 10 : when true, 0 ! ProvideItem;
+to 10 : when true, 0 ! PlannedOrderVariations;
+to 10 : when true, 0 ! ConfirmationofDeliverySchedule;
+to 10 : when true, 0 ! ShippingDone;
+state 10 :
+to 11 : when true, 3 ? POandDeliveryScheduleMods;
+state 11 :
+to 2 : when true, 3 ? AcceptPOandDeliverySchedule;
+automaton A1 :
+initial : 0
+state 0 :
+to 1 : when true, 0 ? PlannedOrderVariations;
+state 1 :
+to 4 : when true, 3 ! AcceptPOandDeliverySchedule;
+to 4 : when true, 3 ! DeliverCheckPointRequest;
+to 4 : when true, 3 ! OrderDeliveryVariations;
+to 4 : when true, 3 ! POandDeliveryScheduleMods;
+state 2 :
+to 3 : when true, 0 ? FinalizedPOandDeliverySchedule;
+state 3 :
+state 4 :
+to 5 : when true, 3 ! POandDeliveryScheduleMods;
+to 5 : when true, 3 ! DeliverCheckPointRequest;
+to 5 : when true, 3 ! OrderDeliveryVariations;
+to 5 : when true, 3 ! AcceptPOandDeliverySchedule;
+state 5 :
+to 6 : when true, 0 ? UpdatePOandDeliverySchedule;
+state 6 :
+to 7 : when true, 3 ! AcceptPOandDeliverySchedule;
+to 7 : when true, 3 ! OrderDeliveryVariations;
+to 7 : when true, 3 ! DeliverCheckPointRequest;
+to 7 : when true, 3 ! POandDeliveryScheduleMods;
+state 7 :
+to 2 : when true, 3 ! DeliverCheckPointRequest;
+to 2 : when true, 3 ! AcceptPOandDeliverySchedule;
+to 2 : when true, 3 ! OrderDeliveryVariations;
+to 2 : when true, 3 ! POandDeliveryScheduleMods;
+automaton A2 :
+initial : 0
+state 0 :
+to 2 : when true, 1 ? ConfirmationofDeliverySchedule;
+to 1 : when true, 1 ? ProvideItem;
+state 1 :
+to 0 : when true, 4 ! DeliverItem;
+state 2 :
+automaton A3 :
+initial : 0
+state 0 :
+to 2 : when true, 2 ? ShippingDone;
+to 1 : when true, 2 ? ProvideItem;
+state 1 :
+to 0 : when true, 5 ! DeliverItem;
+state 2 :

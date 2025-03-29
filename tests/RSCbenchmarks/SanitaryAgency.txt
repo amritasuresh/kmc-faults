@@ -1,0 +1,86 @@
+scm SanitaryAgency :
+nb_channels = 9 ;
+parameters:
+real paymentPrivateFee ;
+real askInfo ;
+real recMoneyPossM ;
+real req ;
+real done ;
+real provInf ;
+real recMoneyPossT ;
+real acceptance ;
+real paymentM ;
+real paymentPublicFee ;
+real provT ;
+real request ;
+real refusal ;
+real paymentT ;
+real provM ;
+automaton A0 :
+initial : 0
+state 0 :
+to 1 : when true, 0 ! request;
+state 1 :
+to 2 : when true, 2 ? askInfo;
+state 2 :
+to 3 : when true, 0 ! provInf;
+state 3 :
+to 0 : when true, 2 ? refusal;
+to 4 : when true, 2 ? acceptance;
+state 4 :
+to 5 : when true, 5 ? provM;
+to 5 : when true, 5 ? provT;
+state 5 :
+to 0 : when true, 1 ! paymentPrivateFee;
+automaton A1 :
+initial : 0
+state 0 :
+to 1 : when true, 0 ? request;
+state 1 :
+to 2 : when true, 2 ! askInfo;
+state 2 :
+to 3 : when true, 0 ? provInf;
+state 3 :
+to 0 : when true, 2 ! refusal;
+to 4 : when true, 2 ! acceptance;
+state 4 :
+to 5 : when true, 3 ! req;
+state 5 :
+to 6 : when true, 4 ! paymentPublicFee;
+state 6 :
+to 0 : when true, 7 ? done;
+automaton A2 :
+initial : 0
+state 0 :
+to 1 : when true, 3 ? req;
+state 1 :
+to 3 : when true, 5 ! provT;
+to 2 : when true, 5 ! provM;
+state 2 :
+to 4 : when true, 6 ! recMoneyPossM;
+state 3 :
+to 5 : when true, 6 ! recMoneyPossT;
+state 4 :
+to 0 : when true, 8 ? paymentM;
+state 5 :
+to 0 : when true, 8 ? paymentT;
+automaton A3 :
+initial : 3
+state 0 :
+to 1 : when true, 8 0 ?;
+to 2 : when true, 8 1 ?;
+state 1 :
+state 2 :
+state 3 :
+to 4 : when true, 6 ? recMoneyPossT;
+to 7 : when true, 6 ? recMoneyPossM;
+state 4 :
+to 5 : when true, 8 ! paymentT;
+state 5 :
+to 8 : when true, 4 ? paymentPublicFee;
+state 6 :
+to 3 : when true, 7 ! done;
+state 7 :
+to 5 : when true, 8 ! paymentM;
+state 8 :
+to 6 : when true, 1 ? paymentPrivateFee;

@@ -1,0 +1,46 @@
+scm commitprotocol :
+nb_channels = 6 ;
+parameters:
+real update ;
+real ok ;
+automaton A0 :
+initial : 0
+state 0 :
+to 0 : when true, 3 ? ok;
+to 4 : when true, 3 ? update;
+to 0 : when true, 3 ? update;
+state 1 :
+to 1 : when true, 4 ? update;
+to 1 : when true, 4 ? ok;
+to 2 : when true, 4 ? ok;
+state 2 :
+to 3 : when true, 5 ? ok;
+to 2 : when true, 5 ? update;
+to 2 : when true, 5 ? ok;
+state 3 :
+to 0 : when true, 0 ! ok;
+state 4 :
+to 5 : when true, 1 ! update;
+state 5 :
+to 1 : when true, 2 ! update;
+automaton A1 :
+initial : 1
+state 0 :
+to 0 : when true, 0 ? ok;
+to 1 : when true, 0 ? ok;
+state 1 :
+to 0 : when true, 3 ! update;
+automaton A2 :
+initial : 1
+state 0 :
+to 1 : when true, 4 ! ok;
+state 1 :
+to 0 : when true, 1 ? update;
+to 1 : when true, 1 ? update;
+automaton A3 :
+initial : 1
+state 0 :
+to 1 : when true, 5 ! ok;
+state 1 :
+to 0 : when true, 2 ? update;
+to 1 : when true, 2 ? update;

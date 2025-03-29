@@ -1,0 +1,107 @@
+scm devsystemfsm :
+nb_channels = 7 ;
+parameters:
+real accept ;
+real tagRC ;
+real evaluate ;
+real revert ;
+real tagRelease ;
+real continue ;
+real releaseCandidate ;
+real discard ;
+real stop ;
+real iterate ;
+real commit ;
+real revision ;
+automaton A0 :
+initial : 0
+state 0 :
+to 1 : when true, 3 ? releaseCandidate;
+state 1 :
+to 2 : when true, 2 ! evaluate;
+to 2 : when true, 2 ! tagRelease;
+to 2 : when true, 2 ! revert;
+to 2 : when true, 2 ! stop;
+to 2 : when true, 2 ! tagRC;
+to 2 : when true, 2 ! continue;
+state 2 :
+to 8 : when true, 6 ? discard;
+to 5 : when true, 6 ? accept;
+to 3 : when true, 6 ? iterate;
+state 3 :
+to 4 : when true, 1 ! stop;
+to 4 : when true, 1 ! continue;
+to 4 : when true, 1 ! revert;
+to 4 : when true, 1 ! tagRelease;
+to 4 : when true, 1 ! evaluate;
+to 4 : when true, 1 ! tagRC;
+state 4 :
+to 0 : when true, 0 ! tagRelease;
+to 0 : when true, 0 ! evaluate;
+to 0 : when true, 0 ! revert;
+to 0 : when true, 0 ! stop;
+to 0 : when true, 0 ! tagRC;
+to 0 : when true, 0 ! continue;
+state 5 :
+to 6 : when true, 1 ! stop;
+to 6 : when true, 1 ! evaluate;
+to 6 : when true, 1 ! continue;
+to 6 : when true, 1 ! tagRC;
+to 6 : when true, 1 ! revert;
+to 6 : when true, 1 ! tagRelease;
+state 6 :
+to 7 : when true, 0 ! revert;
+to 7 : when true, 0 ! continue;
+to 7 : when true, 0 ! evaluate;
+to 7 : when true, 0 ! stop;
+to 7 : when true, 0 ! tagRelease;
+to 7 : when true, 0 ! tagRC;
+state 7 :
+state 8 :
+to 9 : when true, 1 ! tagRC;
+to 9 : when true, 1 ! tagRelease;
+to 9 : when true, 1 ! revert;
+to 9 : when true, 1 ! stop;
+to 9 : when true, 1 ! continue;
+to 9 : when true, 1 ! evaluate;
+state 9 :
+to 0 : when true, 0 ! tagRC;
+to 0 : when true, 0 ! continue;
+to 0 : when true, 0 ! tagRelease;
+to 0 : when true, 0 ! revert;
+to 0 : when true, 0 ! stop;
+to 0 : when true, 0 ! evaluate;
+automaton A1 :
+initial : 0
+state 0 :
+to 1 : when true, 4 ! releaseCandidate;
+to 1 : when true, 4 ! commit;
+state 1 :
+to 2 : when true, 5 ? revision;
+state 2 :
+to 3 : when true, 3 ! releaseCandidate;
+to 3 : when true, 3 ! commit;
+state 3 :
+to 4 : when true, 0 ? stop;
+to 0 : when true, 0 ? continue;
+state 4 :
+automaton A2 :
+initial : 0
+state 0 :
+to 1 : when true, 4 ? commit;
+state 1 :
+to 2 : when true, 5 ! revision;
+state 2 :
+to 3 : when true, 1 ? tagRelease;
+to 0 : when true, 1 ? tagRC;
+state 3 :
+automaton A3 :
+initial : 0
+state 0 :
+to 1 : when true, 2 ? evaluate;
+state 1 :
+to 2 : when true, 6 ! iterate;
+to 0 : when true, 6 ! accept;
+to 2 : when true, 6 ! accept;
+to 0 : when true, 6 ! iterate;
+state 2 :

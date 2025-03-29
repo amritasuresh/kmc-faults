@@ -1,0 +1,73 @@
+scm elevatorextravariant :
+nb_channels = 5 ;
+parameters:
+real open ;
+real closeDoor ;
+real close ;
+real doorStopped ;
+real reset ;
+real openDoor ;
+real stop ;
+real tau ;
+real doorOpened ;
+real doorClosed ;
+automaton A0 :
+initial : 0
+state 0 :
+to 0 : when true, 0 ! openDoor;
+to 0 : when true, 0 ! closeDoor;
+automaton A1 :
+initial : 2
+state 0 :
+to 1 : when true, 2 ! tau;
+to 4 : when true, 1 ! doorClosed;
+state 1 :
+to 5 : when true, 3 ? stop;
+to 0 : when true, 4 ? tau;
+state 2 :
+to 3 : when true, 3 ? open;
+to 0 : when true, 3 ? close;
+to 2 : when true, 3 ? reset;
+to 2 : when true, 3 ? stop;
+state 3 :
+to 4 : when true, 1 ! doorOpened;
+state 4 :
+to 4 : when true, 3 ? open;
+to 2 : when true, 3 ? reset;
+to 4 : when true, 3 ? stop;
+to 4 : when true, 3 ? close;
+state 5 :
+to 3 : when true, 1 ! doorStopped;
+automaton A2 :
+initial : 0
+state 0 :
+to 1 : when true, 3 ! reset;
+state 1 :
+to 1 : when true, 0 ? closeDoor;
+to 5 : when true, 0 ? openDoor;
+state 2 :
+to 3 : when true, 3 ! close;
+state 3 :
+to 7 : when true, 0 ? openDoor;
+to 0 : when true, 1 ? doorClosed;
+state 4 :
+to 2 : when true, 3 ! reset;
+state 5 :
+to 6 : when true, 3 ! open;
+state 6 :
+to 4 : when true, 1 ? doorOpened;
+state 7 :
+to 8 : when true, 3 ! stop;
+state 8 :
+to 8 : when true, 0 ? openDoor;
+to 4 : when true, 1 ? doorOpened;
+to 5 : when true, 1 ? doorStopped;
+to 0 : when true, 1 ? doorClosed;
+automaton A3 :
+initial : 0
+state 0 :
+to 0 : when true, 2 ? tau;
+automaton A4 :
+initial : 0
+state 0 :
+to 0 : when true, 4 ! tau;

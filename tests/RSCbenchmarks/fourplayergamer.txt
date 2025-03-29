@@ -1,0 +1,48 @@
+scm fourplayergamer :
+nb_channels = 6 ;
+parameters:
+real cwin ;
+real win ;
+real free ;
+real bwin ;
+real lose ;
+real msg ;
+real sig ;
+real busy ;
+automaton A0 :
+initial : 0
+state 0 :
+to 1 : when true, 0 ! bwin;
+to 1 : when true, 0 ! cwin;
+state 1 :
+to 2 : when true, 2 ? sig;
+state 2 :
+to 3 : when true, 4 ? msg;
+state 3 :
+to 0 : when true, 1 ! free;
+automaton A1 :
+initial : 0
+state 0 :
+to 3 : when true, 0 ? cwin;
+to 1 : when true, 0 ? bwin;
+state 1 :
+to 2 : when true, 3 ! lose;
+state 2 :
+to 0 : when true, 2 ! sig;
+state 3 :
+to 2 : when true, 3 ! win;
+automaton A2 :
+initial : 0
+state 0 :
+to 1 : when true, 5 ! busy;
+state 1 :
+to 2 : when true, 3 ? lose;
+to 2 : when true, 3 ? win;
+state 2 :
+to 0 : when true, 4 ! msg;
+automaton A3 :
+initial : 0
+state 0 :
+to 1 : when true, 5 ? busy;
+state 1 :
+to 0 : when true, 1 ? free;

@@ -1,0 +1,64 @@
+.outputs
+.state graph
+q1 3 ! evaluate q2
+q3 2 ! tagRC q4
+q4 1 ! continue q0
+q5 2 ! tagRelease q6
+q6 1 ! stop q7
+q8 2 ! revert q9
+q9 1 ! continue q0
+q0 1 ? accept q0
+q0 1 ? discard q0
+q0 1 ? iterate q0
+q0 1 ? releaseCandidate q0
+q0 1 ? releaseCandidate q1
+q2 3 ? accept q2
+q2 3 ? accept q5
+q2 3 ? discard q2
+q2 3 ? discard q8
+q2 3 ? iterate q2
+q2 3 ? iterate q3
+q2 3 ? releaseCandidate q2
+.marking q0
+.end
+
+.outputs
+.state graph
+q0 2 ! commit q1
+q2 0 ! releaseCandidate q4
+q1 2 ? continue q1
+q1 2 ? revision q1
+q1 2 ? revision q2
+q1 2 ? stop q1
+q4 0 ? continue q0
+q4 0 ? continue q4
+q4 0 ? revision q4
+q4 0 ? stop q4
+q4 0 ? stop q5
+.marking q0
+.end
+
+.outputs
+.state graph
+q1 1 ! revision q2
+q0 1 ? commit q0
+q0 1 ? commit q1
+q0 1 ? tagRC q0
+q0 1 ? tagRelease q0
+q2 0 ? commit q2
+q2 0 ? tagRC q0
+q2 0 ? tagRC q2
+q2 0 ? tagRelease q2
+q2 0 ? tagRelease q5
+.marking q0
+.end
+
+.outputs
+.state graph
+q1 0 ! accept q2
+q1 0 ! iterate q0
+q0 0 ? evaluate q0
+q0 0 ? evaluate q1
+.marking q0
+.end
+

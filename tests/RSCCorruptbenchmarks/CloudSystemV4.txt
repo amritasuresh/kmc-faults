@@ -1,0 +1,65 @@
+scm CloudSystemV :
+nb_channels = 6 ;
+parameters:
+real setup ;
+real syncAccess ;
+real syncLog ;
+real log ;
+real syncLogout ;
+real logout ;
+real connect ;
+real access ;
+automaton A0 :
+initial : 0
+state 0 :
+to 4 : when true, 1 ! syncLogout;
+to 4 : when true, 1 ! access;
+to 4 : when true, 1 ! connect;
+to 4 : when true, 1 ! logout;
+state 1 :
+to 0 : when true, 2 ? syncLog;
+state 2 :
+to 1 : when true, 1 ! syncLogout;
+to 1 : when true, 1 ! connect;
+to 1 : when true, 1 ! access;
+to 1 : when true, 1 ! logout;
+state 3 :
+to 3 : when true, 0 ! access;
+to 2 : when true, 0 ! logout;
+to 2 : when true, 0 ! syncLogout;
+to 2 : when true, 0 ! access;
+to 3 : when true, 0 ! logout;
+to 3 : when true, 0 ! connect;
+to 3 : when true, 0 ! syncLogout;
+to 2 : when true, 0 ! connect;
+state 4 :
+to 3 : when true, 4 ? syncAccess;
+automaton A1 :
+initial : 0
+state 0 :
+to 2 : when true, 5 ? setup;
+state 1 :
+to 0 : when true, 2 ! log;
+to 0 : when true, 2 ! syncLog;
+state 2 :
+to 3 : when true, 0 ? syncLogout;
+to 2 : when true, 0 ? access;
+state 3 :
+to 1 : when true, 3 ! log;
+to 1 : when true, 3 ! syncLog;
+automaton A2 :
+initial : 0
+state 0 :
+to 1 : when true, 1 ? connect;
+state 1 :
+to 3 : when true, 5 ! setup;
+to 3 : when true, 5 ! syncAccess;
+state 2 :
+to 0 : when true, 1 ? logout;
+state 3 :
+to 2 : when true, 4 ! syncAccess;
+to 2 : when true, 4 ! setup;
+automaton A3 :
+initial : 0
+state 0 :
+to 0 : when true, 3 ? log;

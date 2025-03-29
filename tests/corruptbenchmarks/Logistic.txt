@@ -1,0 +1,93 @@
+.outputs
+.state graph
+q0 1 ! ConfirmationofDeliverySchedule q1
+q0 1 ! FinalizedPOandDeliverySchedule q1
+q0 1 ! PlannedOrderVariations q1
+q0 1 ! ProvideItem q1
+q0 1 ! ShippingDone q1
+q0 1 ! UpdatePOandDeliverySchedule q1
+q10 1 ! ConfirmationofDeliverySchedule q11
+q10 1 ! FinalizedPOandDeliverySchedule q11
+q10 1 ! PlannedOrderVariations q11
+q10 1 ! ProvideItem q11
+q10 1 ! ShippingDone q11
+q10 1 ! UpdatePOandDeliverySchedule q11
+q3 3 ! ConfirmationofDeliverySchedule q4
+q3 3 ! ConfirmationofDeliverySchedule q6
+q3 3 ! FinalizedPOandDeliverySchedule q4
+q3 3 ! FinalizedPOandDeliverySchedule q6
+q3 3 ! PlannedOrderVariations q4
+q3 3 ! PlannedOrderVariations q6
+q3 3 ! ProvideItem q4
+q3 3 ! ProvideItem q6
+q3 3 ! ShippingDone q4
+q3 3 ! ShippingDone q6
+q3 3 ! UpdatePOandDeliverySchedule q4
+q3 3 ! UpdatePOandDeliverySchedule q6
+q6 2 ! ConfirmationofDeliverySchedule q5
+q6 2 ! ConfirmationofDeliverySchedule q7
+q6 2 ! FinalizedPOandDeliverySchedule q5
+q6 2 ! FinalizedPOandDeliverySchedule q7
+q6 2 ! PlannedOrderVariations q5
+q6 2 ! PlannedOrderVariations q7
+q6 2 ! ProvideItem q5
+q6 2 ! ProvideItem q7
+q6 2 ! ShippingDone q5
+q6 2 ! ShippingDone q7
+q6 2 ! UpdatePOandDeliverySchedule q5
+q6 2 ! UpdatePOandDeliverySchedule q7
+q7 1 ! ConfirmationofDeliverySchedule q8
+q7 1 ! FinalizedPOandDeliverySchedule q8
+q7 1 ! PlannedOrderVariations q8
+q7 1 ! ProvideItem q8
+q7 1 ! ShippingDone q8
+q7 1 ! UpdatePOandDeliverySchedule q8
+q1 1 ? OrderDeliveryVariations q2
+q2 1 ? DeliverCheckPointRequest q3
+q4 3 ? DeliverItem q3
+q5 2 ? DeliverItem q6
+q8 1 ? POandDeliveryScheduleMods q9
+q9 1 ? AcceptPOandDeliverySchedule q10
+.marking q0
+.end
+
+.outputs
+.state graph
+q1 0 ! AcceptPOandDeliverySchedule q2
+q1 0 ! DeliverCheckPointRequest q2
+q1 0 ! OrderDeliveryVariations q2
+q1 0 ! POandDeliveryScheduleMods q2
+q2 0 ! AcceptPOandDeliverySchedule q3
+q2 0 ! DeliverCheckPointRequest q3
+q2 0 ! OrderDeliveryVariations q3
+q2 0 ! POandDeliveryScheduleMods q3
+q8 0 ! AcceptPOandDeliverySchedule q9
+q8 0 ! DeliverCheckPointRequest q9
+q8 0 ! OrderDeliveryVariations q9
+q8 0 ! POandDeliveryScheduleMods q9
+q9 0 ! AcceptPOandDeliverySchedule q10
+q9 0 ! DeliverCheckPointRequest q10
+q9 0 ! OrderDeliveryVariations q10
+q9 0 ! POandDeliveryScheduleMods q10
+q0 0 ? PlannedOrderVariations q1
+q10 0 ? FinalizedPOandDeliverySchedule q11
+q3 0 ? UpdatePOandDeliverySchedule q8
+.marking q0
+.end
+
+.outputs
+.state graph
+q1 0 ! DeliverItem q0
+q0 0 ? ConfirmationofDeliverySchedule q2
+q0 0 ? ProvideItem q1
+.marking q0
+.end
+
+.outputs
+.state graph
+q1 0 ! DeliverItem q0
+q0 0 ? ProvideItem q1
+q0 0 ? ShippingDone q2
+.marking q0
+.end
+

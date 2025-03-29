@@ -1,0 +1,31 @@
+scm clientserverlogger :
+nb_channels = 3 ;
+parameters:
+real ok ;
+real log ;
+real req ;
+real ko ;
+real data ;
+automaton A0 :
+initial : 0
+state 0 :
+to 1 : when true, 0 ? req;
+state 1 :
+to 2 : when true, 0 ! ko;
+to 2 : when true, 0 ! log;
+to 3 : when true, 0 ! ok;
+to 3 : when true, 0 ! log;
+to 2 : when true, 0 ! ok;
+to 3 : when true, 0 ! ko;
+state 2 :
+to 0 : when true, 0 ? data;
+state 3 :
+to 4 : when true, 0 ? data;
+state 4 :
+to 4 : when true, 1 ! log;
+to 4 : when true, 1 ! ko;
+to 4 : when true, 1 ! ok;
+automaton A1 :
+initial : 0
+state 0 :
+to 0 : when true, 2 ? log;

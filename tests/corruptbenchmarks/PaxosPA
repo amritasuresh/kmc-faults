@@ -1,0 +1,71 @@
+scm PaxosPA :
+nb_channels = 4 ;
+parameters:
+real accreq ;
+real prom1 ;
+real prep0 ;
+real rej0 ;
+real chosen ;
+real rej1 ;
+real prom0 ;
+real accept ;
+real prep1 ;
+automaton A0 :
+initial : 0
+state 0 :
+to 1 : when true, 0 ! prep0;
+state 1 :
+to 2 : when true, 2 ? prom0;
+to 6 : when true, 2 ? rej1;
+state 2 :
+to 3 : when true, 0 ! accreq;
+state 3 :
+to 6 : when true, 2 ? rej1;
+to 4 : when true, 2 ? accept;
+state 4 :
+to 5 : when true, 0 ! chosen;
+state 5 :
+state 6 :
+automaton A1 :
+initial : 0
+state 0 :
+to 1 : when true, 1 ! prep1;
+state 1 :
+to 6 : when true, 3 ? rej0;
+to 2 : when true, 3 ? prom1;
+state 2 :
+to 3 : when true, 1 ! accreq;
+state 3 :
+to 6 : when true, 3 ? rej0;
+to 4 : when true, 3 ? accept;
+state 4 :
+to 5 : when true, 1 ! chosen;
+state 5 :
+state 6 :
+automaton A2 :
+initial : 0
+state 0 :
+to 3 : when true, 0 ? prep0;
+to 4 : when true, 1 ? prep1;
+state 1 :
+to 2 : when true, 1 ? chosen;
+state 2 :
+state 3 :
+to 5 : when true, 2 ! prom0;
+state 4 :
+to 5 : when true, 3 ! prom1;
+state 5 :
+to 8 : when true, 0 ? accreq;
+to 9 : when true, 1 ? accreq;
+to 7 : when true, 1 ? prep1;
+to 6 : when true, 0 ? prep0;
+state 6 :
+to 5 : when true, 2 ! rej1;
+state 7 :
+to 5 : when true, 3 ! rej0;
+state 8 :
+to 10 : when true, 2 ! accept;
+state 9 :
+to 1 : when true, 3 ! accept;
+state 10 :
+to 2 : when true, 0 ? chosen;

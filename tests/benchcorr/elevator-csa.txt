@@ -1,0 +1,55 @@
+.outputs
+.state graph
+loop 2 ! closeDoor loop
+loop 2 ! openDoor loop
+.marking loop
+.end
+
+.outputs
+.state graph
+closing 2 ! doorClosed resetdoor
+closing 2 ! doorOpened resetdoor
+opendoor 2 ! doorClosed resetdoor
+opendoor 2 ! doorOpened resetdoor
+init 2 ? close closing
+init 2 ? open opendoor
+init 2 ? reset init
+init 2 ? stop init
+resetdoor 2 ? close resetdoor
+resetdoor 2 ? open resetdoor
+resetdoor 2 ? reset init
+resetdoor 2 ? stop resetdoor
+.marking init
+.end
+
+.outputs
+.state graph
+closed1 1 ! close closed2
+closed1 1 ! open closed2
+closed1 1 ! reset closed2
+closed1 1 ! stop closed2
+closing1 1 ! close stopping1
+closing1 1 ! open stopping1
+closing1 1 ! reset stopping1
+closing1 1 ! stop stopping1
+opened 1 ! close closing1
+opened 1 ! open closing1
+opened 1 ! reset closing1
+opened 1 ! stop closing1
+opening1 1 ! close opening2
+opening1 1 ! open opening2
+opening1 1 ! reset opening2
+opening1 1 ! stop opening2
+stopping1 1 ! close stopping2
+stopping1 1 ! open stopping2
+stopping1 1 ! reset stopping2
+stopping1 1 ! stop stopping2
+closed2 0 ? closeDoor closed2
+closed2 0 ? openDoor opening1
+opening2 1 ? doorOpened opened
+stopping2 1 ? doorClosed closed1
+stopping2 1 ? doorOpened opened
+stopping2 1 ? doorStopped opening1
+.marking closed1
+.end
+

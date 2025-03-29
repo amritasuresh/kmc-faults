@@ -1,0 +1,29 @@
+.outputs
+.state graph
+q0 1 ! haggle q1
+q0 1 ! haggle q2
+q0 1 ! happy q1
+q0 1 ! happy q2
+q0 1 ! info q1
+q0 1 ! info q2
+q2 2 ! haggle q3
+q2 2 ! happy q3
+q2 2 ! info q3
+q1 1 ? price q0
+.marking q0
+.end
+
+.outputs
+.state graph
+q1 0 ! price q0
+q0 0 ? haggle q1
+q0 0 ? happy q2
+.marking q0
+.end
+
+.outputs
+.state graph
+q0 0 ? info q1
+.marking q0
+.end
+

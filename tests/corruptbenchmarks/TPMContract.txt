@@ -1,0 +1,35 @@
+.outputs
+.state graph
+IORUNNING 1 ! GetTpmStatus IORUNNINGS0
+IORUNNING 1 ! send IORUNNINGS0
+ReadyState 1 ! GetTpmStatus ReadyStateS0
+ReadyState 1 ! GetTpmStatus ReadyStateS1
+ReadyState 1 ! send ReadyStateS0
+ReadyState 1 ! send ReadyStateS1
+IORUNNINGS0 1 ? SendComplete ReadyStateS1
+IORUNNINGS0 1 ? TpmStatus IORUNNING
+ReadyStateS0 1 ? AckStartSend IORUNNING
+ReadyStateS1 1 ? TpmStatus ReadyState
+.marking ReadyState
+.end
+
+.outputs
+.state graph
+IORUNNINGS0 0 ! AckStartSend IORUNNING
+IORUNNINGS0 0 ! AckStartSend ReadyStateS1
+IORUNNINGS0 0 ! SendComplete IORUNNING
+IORUNNINGS0 0 ! SendComplete ReadyStateS1
+IORUNNINGS0 0 ! TpmStatus IORUNNING
+IORUNNINGS0 0 ! TpmStatus ReadyStateS1
+ReadyStateS0 0 ! AckStartSend IORUNNING
+ReadyStateS0 0 ! SendComplete IORUNNING
+ReadyStateS0 0 ! TpmStatus IORUNNING
+ReadyStateS1 0 ! AckStartSend ReadyState
+ReadyStateS1 0 ! SendComplete ReadyState
+ReadyStateS1 0 ! TpmStatus ReadyState
+IORUNNING 0 ? GetTpmStatus IORUNNINGS0
+ReadyState 0 ? GetTpmStatus ReadyStateS1
+ReadyState 0 ? send ReadyStateS0
+.marking ReadyState
+.end
+

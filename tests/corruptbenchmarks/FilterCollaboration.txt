@@ -1,0 +1,25 @@
+.outputs
+.state graph
+Respond 1 ! newFilterRequest Filter
+Respond 1 ! ok Filter
+Respond 1 ! remove Filter
+Stable 1 ! newFilterRequest Filter
+Stable 1 ! ok Filter
+Stable 1 ! remove Filter
+Filter 1 ? itemToBeFiltered Respond
+Filter 1 ? noMoreItems Stable
+.marking Stable
+.end
+
+.outputs
+.state graph
+Filter 0 ! itemToBeFiltered Respond
+Filter 0 ! itemToBeFiltered Stable
+Filter 0 ! noMoreItems Respond
+Filter 0 ! noMoreItems Stable
+Respond 0 ? ok Filter
+Respond 0 ? remove Filter
+Stable 0 ? newFilterRequest Filter
+.marking Stable
+.end
+

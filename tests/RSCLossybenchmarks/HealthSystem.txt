@@ -1,0 +1,95 @@
+scm HealthSystem :
+nb_channels = 10 ;
+parameters:
+real subscribed ;
+real sendData ;
+real account ;
+real nok ;
+real provideService ;
+real helpReq ;
+real fwdOk ;
+real logCreated ;
+real notSubscribed ;
+real fwd ;
+real ok ;
+automaton A0 :
+initial : 0
+state 0 :
+to 0 : when true, 4 ? ok;
+to 0 : when true, 4 ? sendData;
+to 0 : when true, 4 ? logCreated;
+to 0 : when true, 4 ? fwdOk;
+to 0 : when true, 4 ? nok;
+to 1 : when true, 4 ? sendData;
+state 1 :
+to 2 : when true, 1 ! subscribed;
+state 2 :
+to 2 : when true, 5 ? fwdOk;
+to 5 : when true, 5 ? nok;
+to 2 : when true, 5 ? sendData;
+to 2 : when true, 5 ? logCreated;
+to 2 : when true, 5 ? ok;
+to 3 : when true, 5 ? ok;
+to 2 : when true, 5 ? nok;
+state 3 :
+to 4 : when true, 2 ! account;
+state 4 :
+to 4 : when true, 6 ? ok;
+to 4 : when true, 6 ? sendData;
+to 4 : when true, 6 ? nok;
+to 6 : when true, 6 ? logCreated;
+to 4 : when true, 6 ? logCreated;
+to 4 : when true, 6 ? fwdOk;
+state 5 :
+to 0 : when true, 0 ! notSubscribed;
+state 6 :
+to 7 : when true, 3 ! fwd;
+state 7 :
+to 7 : when true, 7 ? sendData;
+to 7 : when true, 7 ? ok;
+to 7 : when true, 7 ? logCreated;
+to 7 : when true, 7 ? nok;
+to 7 : when true, 7 ? fwdOk;
+to 0 : when true, 7 ? fwdOk;
+automaton A1 :
+initial : 0
+state 0 :
+to 1 : when true, 4 ! sendData;
+state 1 :
+to 1 : when true, 9 ? provideService;
+to 1 : when true, 9 ? notSubscribed;
+to 1 : when true, 0 ? notSubscribed;
+to 0 : when true, 9 ? provideService;
+to 1 : when true, 0 ? provideService;
+to 0 : when true, 0 ? notSubscribed;
+automaton A2 :
+initial : 0
+state 0 :
+to 0 : when true, 1 ? subscribed;
+to 1 : when true, 1 ? subscribed;
+state 1 :
+to 0 : when true, 5 ! ok;
+to 0 : when true, 5 ! nok;
+automaton A3 :
+initial : 0
+state 0 :
+to 1 : when true, 2 ? account;
+to 0 : when true, 2 ? account;
+state 1 :
+to 0 : when true, 6 ! logCreated;
+automaton A4 :
+initial : 0
+state 0 :
+to 1 : when true, 3 ? fwd;
+to 0 : when true, 3 ? fwd;
+state 1 :
+to 2 : when true, 7 ! fwdOk;
+state 2 :
+to 0 : when true, 8 ! helpReq;
+automaton A5 :
+initial : 0
+state 0 :
+to 1 : when true, 8 ? helpReq;
+to 0 : when true, 8 ? helpReq;
+state 1 :
+to 0 : when true, 9 ! provideService;

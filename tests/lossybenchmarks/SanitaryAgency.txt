@@ -1,0 +1,95 @@
+.outputs
+.state graph
+q0 1 ! request q1
+q2 1 ! provInf q3
+q5 3 ! paymentPrivateFee q0
+q1 1 ? acceptance q1
+q1 1 ? askInfo q1
+q1 1 ? askInfo q2
+q1 1 ? provM q1
+q1 1 ? provT q1
+q1 1 ? refusal q1
+q3 1 ? acceptance q3
+q3 1 ? acceptance q4
+q3 1 ? askInfo q3
+q3 1 ? provM q3
+q3 1 ? provT q3
+q3 1 ? refusal q0
+q3 1 ? refusal q3
+q4 2 ? acceptance q4
+q4 2 ? askInfo q4
+q4 2 ? provM q4
+q4 2 ? provM q5
+q4 2 ? provT q4
+q4 2 ? provT q5
+q4 2 ? refusal q4
+.marking q0
+.end
+
+.outputs
+.state graph
+q1 0 ! askInfo q2
+q3 0 ! acceptance q4
+q3 0 ! refusal q0
+q4 2 ! req q5
+q5 3 ! paymentPublicFee q6
+q0 0 ? done q0
+q0 0 ? provInf q0
+q0 0 ? request q0
+q0 0 ? request q1
+q2 0 ? done q2
+q2 0 ? provInf q2
+q2 0 ? provInf q3
+q2 0 ? request q2
+q6 3 ? done q0
+q6 3 ? done q6
+q6 3 ? provInf q6
+q6 3 ? request q6
+.marking q0
+.end
+
+.outputs
+.state graph
+q0a 0 ! provM q1M
+q0a 0 ! provT q1T
+q1M 3 ! recMoneyPossM q2M
+q1T 3 ! recMoneyPossT q2T
+q0 1 ? paymentM q0
+q0 1 ? paymentT q0
+q0 1 ? req q0
+q0 1 ? req q0a
+q2M 3 ? paymentM q0
+q2M 3 ? paymentM q2M
+q2M 3 ? paymentT q2M
+q2M 3 ? req q2M
+q2T 3 ? paymentM q2T
+q2T 3 ? paymentT q0
+q2T 3 ? paymentT q2T
+q2T 3 ? req q2T
+.marking q0
+.end
+
+.outputs
+.state graph
+q1 2 ! paymentT q1M
+q4 1 ! done q0
+q5 2 ! paymentM q1M
+q0 2 ? paymentPrivateFee q0
+q0 2 ? paymentPublicFee q0
+q0 2 ? recMoneyPossM q0
+q0 2 ? recMoneyPossM q5
+q0 2 ? recMoneyPossT q0
+q0 2 ? recMoneyPossT q1
+q1M 1 ? paymentPrivateFee q1M
+q1M 1 ? paymentPublicFee q1M
+q1M 1 ? paymentPublicFee q5M
+q1M 1 ? recMoneyPossM q1M
+q1M 1 ? recMoneyPossT q1M
+q5M 0 ? paymentPrivateFee q4
+q5M 0 ? paymentPrivateFee q5M
+q5M 0 ? paymentPublicFee q5M
+q5M 0 ? recMoneyPossM q5M
+q5M 0 ? recMoneyPossT q5M
+.marking q0
+.end
+

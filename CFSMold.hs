@@ -100,26 +100,6 @@ initConf sys = let emptyQ = M.fromList $ [((x,y),[]) | x <- keys sys, y <- keys 
                in (initS, emptyQ)
 
                    
--- nextConfiguration :: Int -> System -> Configuration -> [(Label, Configuration)]
---nextConfiguration k sys (states, queues) =
---  let nonemptyqueues = L.filter (\(x,y) -> not $ L.null y) $ M.toList queues
---      nonfullqueues = L.filter (\(x,y) -> (length y) < k) $ M.toList queues
---      partitionEdges m x = L.partition (\((s,t,d,m),ns) -> d==Send) $ outedges m x
---     nexttransitions = (L.map (\(id, m) -> partitionEdges m (states!id)) $ M.toList sys) 
---      allsends = concat $ L.map fst nexttransitions
---      allrecvs = concat $ L.map snd nexttransitions
---      --
---      sent = [(((s,r),(q++[m])), (s,t), (s,r,d,m)) | ((s',r'),q) <- nonfullqueues
---                                                   , ((s,r,d,m),t) <- allsends, s'==s, r==r']
---            
---      received = [(((s,r),(tail q)), (r,t),(s,r,d,m))  | ((s',r'),q) <- nonemptyqueues
---                                                       , ((s,r,d,m),t) <- allrecvs
---                                                       , s'==s, r==r', head q ==m]
---      --
---      updateQueue qs ((s,r),q) = M.insert (s,r) q qs
---      updateStates st (p,t) = M.insert p t st
---  in L.map (\(x,y,z) -> (z, (updateStates states y, updateQueue queues x))) (sent++received)
-
 nextConfiguration :: Int -> System -> Configuration -> [(Label, Configuration)]
 nextConfiguration k sys (states, queues) =
   let nonemptyqueues = L.filter (\(x,y) -> not $ L.null y) $ M.toList queues
@@ -132,31 +112,14 @@ nextConfiguration k sys (states, queues) =
       sent = [(((s,r),(q++[m])), (s,t), (s,r,d,m)) | ((s',r'),q) <- nonfullqueues
                                                    , ((s,r,d,m),t) <- allsends, s'==s, r==r']
              
-      received = [(((s,r),(removeFirst m q)), (r,t),(s,r,d,m))  | ((s',r'),q) <- nonemptyqueues
-                                                                , ((s,r,d,m),t) <- allrecvs
-                                                                , s'==s, r==r', m `elem` q]
+      received = [(((s,r),(tail q)), (r,t),(s,r,d,m))  | ((s',r'),q) <- nonemptyqueues
+                                                       , ((s,r,d,m),t) <- allrecvs
+                                                       , s'==s, r==r', head q ==m]
       --
       updateQueue qs ((s,r),q) = M.insert (s,r) q qs
       updateStates st (p,t) = M.insert p t st
   in L.map (\(x,y,z) -> (z, (updateStates states y, updateQueue queues x))) (sent++received)
 
--- Helper function to remove the first occurrence of an element from a list
-removeFirst :: Eq a => a -> [a] -> [a]
-removeFirst _ [] = []
-removeFirst y (x:xs)
-  | y == x    = xs
-  | otherwise = x : removeFirst y xs
-
-
--- nextConfigurationFixed :: Int -> System -> Configuration -> Label -> Configuration
--- nextConfigurationFixed k sys ((states, queues)) l@(s, r, Send, msg) =
---  let oldqueue = queues M.! (s,r)
---      target = successor (sys M.! s) (states M.! s) l
---  in ((M.insert s target states, M.insert (s,r) (oldqueue++[msg]) queues))
--- nextConfigurationFixed k sys ((states, queues)) l@(s, r, Receive, msg) =
---  let (x:xs) = queues M.! (s,r)
---      target = successor (sys M.! r) (states M.! r) l
---   in ((M.insert r target states, M.insert (s,r) xs queues))
 
 nextConfigurationFixed :: Int -> System -> Configuration -> Label -> Configuration
 nextConfigurationFixed k sys ((states, queues)) l@(s, r, Send, msg) =
@@ -164,11 +127,9 @@ nextConfigurationFixed k sys ((states, queues)) l@(s, r, Send, msg) =
       target = successor (sys M.! s) (states M.! s) l
   in ((M.insert s target states, M.insert (s,r) (oldqueue++[msg]) queues))
 nextConfigurationFixed k sys ((states, queues)) l@(s, r, Receive, msg) =
-  let queue = queues M.! (s,r)
-      (before, _:after) = break (== msg) queue
-      newQueue = before ++ after
+  let (x:xs) = queues M.! (s,r)
       target = successor (sys M.! r) (states M.! r) l
-  in ((M.insert r target states, M.insert (s,r) newQueue queues))
+   in ((M.insert r target states, M.insert (s,r) xs queues))
 
 buildTS :: Int -> System -> TS
 buildTS k sys = Automaton { states = nub

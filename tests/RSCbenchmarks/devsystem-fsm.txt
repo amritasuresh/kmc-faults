@@ -1,0 +1,68 @@
+scm devsystemfsm :
+nb_channels = 7 ;
+parameters:
+real commit ;
+real discard ;
+real accept ;
+real stop ;
+real evaluate ;
+real tagRelease ;
+real revision ;
+real continue ;
+real iterate ;
+real revert ;
+real releaseCandidate ;
+real tagRC ;
+automaton A0 :
+initial : 0
+state 0 :
+to 1 : when true, 3 ? releaseCandidate;
+state 1 :
+to 2 : when true, 2 ! evaluate;
+state 2 :
+to 5 : when true, 6 ? accept;
+to 3 : when true, 6 ? iterate;
+to 8 : when true, 6 ? discard;
+state 3 :
+to 4 : when true, 1 ! tagRC;
+state 4 :
+to 0 : when true, 0 ! continue;
+state 5 :
+to 6 : when true, 1 ! tagRelease;
+state 6 :
+to 7 : when true, 0 ! stop;
+state 7 :
+state 8 :
+to 9 : when true, 1 ! revert;
+state 9 :
+to 0 : when true, 0 ! continue;
+automaton A1 :
+initial : 0
+state 0 :
+to 1 : when true, 4 ! commit;
+state 1 :
+to 2 : when true, 5 ? revision;
+state 2 :
+to 3 : when true, 3 ! releaseCandidate;
+state 3 :
+to 4 : when true, 0 ? stop;
+to 0 : when true, 0 ? continue;
+state 4 :
+automaton A2 :
+initial : 0
+state 0 :
+to 1 : when true, 4 ? commit;
+state 1 :
+to 2 : when true, 5 ! revision;
+state 2 :
+to 3 : when true, 1 ? tagRelease;
+to 0 : when true, 1 ? tagRC;
+state 3 :
+automaton A3 :
+initial : 0
+state 0 :
+to 1 : when true, 2 ? evaluate;
+state 1 :
+to 2 : when true, 6 ! accept;
+to 0 : when true, 6 ! iterate;
+state 2 :

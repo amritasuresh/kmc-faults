@@ -1,0 +1,16 @@
+.outputs
+.state graph
+q2 0 ! a0 q4
+q6 0 ! a1 q1
+q7 0 ! a0 q4
+q1 0 ? d0 q1
+q1 0 ? d0 q2
+q1 0 ? d1 q1
+q1 0 ? d1 q8
+q4 0 ? d0 q4
+q4 0 ? d0 q7
+q4 0 ? d1 q4
+q4 0 ? d1 q6
+.marking q1
+.end
+

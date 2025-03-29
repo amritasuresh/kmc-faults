@@ -1,0 +1,78 @@
+.outputs
+.state graph
+q1 2 ! accreq q2
+q1 2 ! chosen q2
+q1 2 ! prep0 q2
+q3 2 ! accreq q4
+q3 2 ! chosen q4
+q3 2 ! prep0 q4
+q5 2 ! accreq q6
+q5 2 ! chosen q6
+q5 2 ! prep0 q6
+q2 2 ? prom0 q3
+q2 2 ? rej1 q7
+q4 2 ? accept q5
+q4 2 ? rej1 q7
+.marking q1
+.end
+
+.outputs
+.state graph
+q1 2 ! accreq q2
+q1 2 ! chosen q2
+q1 2 ! prep1 q2
+q3 2 ! accreq q4
+q3 2 ! chosen q4
+q3 2 ! prep1 q4
+q5 2 ! accreq q6
+q5 2 ! chosen q6
+q5 2 ! prep1 q6
+q2 2 ? prom1 q3
+q2 2 ? rej0 q7
+q4 2 ? accept q5
+q4 2 ? rej0 q7
+.marking q1
+.end
+
+.outputs
+.state graph
+q2 0 ! accept q4
+q2 0 ! prom0 q4
+q2 0 ! prom1 q4
+q2 0 ! rej0 q4
+q2 0 ! rej1 q4
+q3 1 ! accept q4
+q3 1 ! prom0 q4
+q3 1 ! prom1 q4
+q3 1 ! rej0 q4
+q3 1 ! rej1 q4
+q5 0 ! accept q4
+q5 0 ! prom0 q4
+q5 0 ! prom1 q4
+q5 0 ! rej0 q4
+q5 0 ! rej1 q4
+q6 1 ! accept q4
+q6 1 ! prom0 q4
+q6 1 ! prom1 q4
+q6 1 ! rej0 q4
+q6 1 ! rej1 q4
+q7 0 ! accept q9
+q7 0 ! prom0 q9
+q7 0 ! prom1 q9
+q7 0 ! rej0 q9
+q7 0 ! rej1 q9
+q8 1 ! accept q10
+q8 1 ! prom0 q10
+q8 1 ! prom1 q10
+q8 1 ! rej0 q10
+q8 1 ! rej1 q10
+q1 0 ? prep0 q2
+q1 1 ? prep1 q3
+q10 1 ? chosen q11
+q4 0 ? accreq q7
+q4 0 ? prep0 q5
+q4 1 ? accreq q8
+q4 1 ? prep1 q6
+q9 0 ? chosen q11
+.marking q1
+.end

@@ -1,0 +1,233 @@
+tests/benchmarks/client-server-logger.txt,"Up to date
+CSA: [92mTrue
+[0mBasic: [92mTrue
+[0mreduced 1-exhaustive: [92mTrue
+[0mreduced 1-safe: [92mTrue
+[0m"
+tests/benchmarks/client-server-logger.txt,"Up to date
+CSA: [92mTrue
+[0mBasic: [92mTrue
+[0mreduced 2-exhaustive: [92mTrue
+[0mreduced 2-safe: [92mTrue
+[0m"
+tests/benchmarks/CloudSystemV4.txt,"Up to date
+CSA: [92mTrue
+[0mBasic: [92mTrue
+[0mreduced 1-exhaustive: [92mTrue
+[0mreduced 1-safe: [92mTrue
+[0m"
+tests/benchmarks/CloudSystemV4.txt,"Up to date
+CSA: [92mTrue
+[0mBasic: [92mTrue
+[0mreduced 2-exhaustive: [92mTrue
+[0mreduced 2-safe: [92mTrue
+[0m"
+tests/benchmarks/Logistic.txt,"Up to date
+CSA: [92mTrue
+[0mBasic: [92mTrue
+[0mreduced 1-exhaustive: [92mTrue
+[0mreduced 1-safe: [92mTrue
+[0m"
+tests/benchmarks/Logistic.txt,"Up to date
+CSA: [92mTrue
+[0mBasic: [92mTrue
+[0mreduced 2-exhaustive: [92mTrue
+[0mreduced 2-safe: [92mTrue
+[0m"
+tests/benchmarks/fourplayergamer.txt,"Up to date
+CSA: [92mTrue
+[0mBasic: [92mTrue
+[0mreduced 1-exhaustive: [92mTrue
+[0mreduced 1-safe: [92mTrue
+[0m"
+tests/benchmarks/fourplayergamer.txt,"Up to date
+CSA: [92mTrue
+[0mBasic: [92mTrue
+[0mreduced 2-exhaustive: [92mTrue
+[0mreduced 2-safe: [92mTrue
+[0m"
+tests/benchmarks/FilterCollaboration.txt,"Up to date
+CSA: [92mTrue
+[0mBasic: [92mTrue
+[0mreduced 1-exhaustive: [92mTrue
+[0mreduced 1-safe: [92mTrue
+[0m"
+tests/benchmarks/FilterCollaboration.txt,"Up to date
+CSA: [92mTrue
+[0mBasic: [92mTrue
+[0mreduced 2-exhaustive: [92mTrue
+[0mreduced 2-safe: [92mTrue
+[0m"
+tests/benchmarks/TPMContract.txt,"Up to date
+CSA: [92mTrue
+[0mBasic: [92mTrue
+[0mreduced 1-exhaustive: [92mTrue
+[0mreduced 1-safe: [92mTrue
+[0m"
+tests/benchmarks/TPMContract.txt,"Up to date
+CSA: [92mTrue
+[0mBasic: [92mTrue
+[0mreduced 2-exhaustive: [92mTrue
+[0mreduced 2-safe: [92mTrue
+[0m"
+tests/benchmarks/CloudSystemVFour.txt,"Up to date
+CSA: [92mTrue
+[0mreduced 1-OBI: [91mFalse
+[0mreduced 1-SIBI: [92mTrue
+[0mreduced 1-exhaustive: [92mTrue
+[0mreduced 1-safe: [92mTrue
+[0m"
+tests/benchmarks/CloudSystemVFour.txt,"Up to date
+CSA: [92mTrue
+[0mreduced 2-OBI: [92mTrue
+[0mreduced 2-SIBI: [92mTrue
+[0mreduced 2-exhaustive: [92mTrue
+[0mreduced 2-safe: [92mTrue
+[0m"
+tests/benchmarks/devsystem-fsm.txt,"Up to date
+CSA: [92mTrue
+[0mBasic: [92mTrue
+[0mreduced 1-exhaustive: [92mTrue
+[0mreduced 1-safe: [92mTrue
+[0m"
+tests/benchmarks/devsystem-fsm.txt,"Up to date
+CSA: [92mTrue
+[0mBasic: [92mTrue
+[0mreduced 2-exhaustive: [92mTrue
+[0mreduced 2-safe: [92mTrue
+[0m"
+tests/benchmarks/Bargain.txt,"Up to date
+CSA: [92mTrue
+[0mBasic: [92mTrue
+[0mreduced 1-exhaustive: [92mTrue
+[0mreduced 1-safe: [92mTrue
+[0m"
+tests/benchmarks/Bargain.txt,"Up to date
+CSA: [92mTrue
+[0mBasic: [92mTrue
+[0mreduced 2-exhaustive: [92mTrue
+[0mreduced 2-safe: [92mTrue
+[0m"
+tests/benchmarks/HealthSystem.txt,"Up to date
+CSA: [92mTrue
+[0mreduced 1-OBI: [92mTrue
+[0mreduced 1-SIBI: [91mFalse
+[0mreduced 1-exhaustive: [92mTrue
+[0mreduced 1-safe: [92mTrue
+[0m"
+tests/benchmarks/HealthSystem.txt,"Up to date
+CSA: [92mTrue
+[0mreduced 2-OBI: [92mTrue
+[0mreduced 2-SIBI: [91mFalse
+[0mreduced 2-exhaustive: [92mTrue
+[0mreduced 2-safe: [92mTrue
+[0m"
+tests/benchmarks/elevator-csa.txt,"Up to date
+CSA: [92mTrue
+[0mBasic: [92mTrue
+[0mreduced 1-exhaustive: [92mTrue
+[0mreduced 1-safe: [92mTrue
+[0m"
+tests/benchmarks/elevator-csa.txt,"Up to date
+CSA: [92mTrue
+[0mBasic: [92mTrue
+[0mreduced 2-exhaustive: [92mTrue
+[0mreduced 2-safe: [92mTrue
+[0m"
+tests/benchmarks/exnonreg.txt,"Up to date
+CSA: [92mTrue
+[0mBasic: [92mTrue
+[0mreduced 1-exhaustive: [92mTrue
+[0mreduced 1-safe: [92mTrue
+[0m"
+tests/benchmarks/exnonreg.txt,"Up to date
+CSA: [92mTrue
+[0mBasic: [92mTrue
+[0mreduced 2-exhaustive: [92mTrue
+[0mreduced 2-safe: [92mTrue
+[0m"
+tests/benchmarks/AlternatingBit-boigelot.txt,"Up to date
+CSA: [92mTrue
+[0mBasic: [92mTrue
+[0mreduced 1-exhaustive: [92mTrue
+[0mreduced 1-safe: [92mTrue
+[0m"
+tests/benchmarks/AlternatingBit-boigelot.txt,"Up to date
+CSA: [92mTrue
+[0mBasic: [92mTrue
+[0mreduced 2-exhaustive: [92mTrue
+[0mreduced 2-safe: [92mTrue
+[0m"
+tests/benchmarks/SanitaryAgency.txt,"Up to date
+CSA: [92mTrue
+[0mBasic: [92mTrue
+[0mreduced 1-exhaustive: [92mTrue
+[0mreduced 1-safe: [92mTrue
+[0m"
+tests/benchmarks/SanitaryAgency.txt,"Up to date
+CSA: [92mTrue
+[0mBasic: [92mTrue
+[0mreduced 2-exhaustive: [92mTrue
+[0mreduced 2-safe: [92mTrue
+[0m"
+tests/benchmarks/outofordereg.txt,"Up to date
+CSA: [92mTrue
+[0mBasic: [92mTrue
+[0mreduced 1-exhaustive: [91mFalse
+[0mreduced 1-safe: [91mFalse
+[0mTraces violating progress: [, 0->1!d0<>]
+Traces violating eventual reception: [0->1!d0<>]"
+tests/benchmarks/outofordereg.txt,"Up to date
+CSA: [92mTrue
+[0mBasic: [92mTrue
+[0mreduced 2-exhaustive: [92mTrue
+[0mreduced 2-safe: [92mTrue
+[0m"
+tests/benchmarks/AlternatingBit.txt,"Up to date
+CSA: [92mTrue
+[0mBasic: [92mTrue
+[0mreduced 1-exhaustive: [92mTrue
+[0mreduced 1-safe: [92mTrue
+[0m"
+tests/benchmarks/AlternatingBit.txt,"Up to date
+CSA: [92mTrue
+[0mBasic: [92mTrue
+[0mreduced 2-exhaustive: [92mTrue
+[0mreduced 2-safe: [92mTrue
+[0m"
+tests/benchmarks/devsystem.txt,"Up to date
+(line 3, column 1):
+unexpected ""T""
+expecting "".outputs""
+Are you using the correct flag (--fsm or --normal)? See --help."
+tests/benchmarks/devsystem.txt,"Up to date
+(line 3, column 1):
+unexpected ""T""
+expecting "".outputs""
+Are you using the correct flag (--fsm or --normal)? See --help."
+tests/benchmarks/commit-protocol.txt,"Up to date
+CSA: [92mTrue
+[0mBasic: [92mTrue
+[0mreduced 1-exhaustive: [92mTrue
+[0mreduced 1-safe: [92mTrue
+[0m"
+tests/benchmarks/commit-protocol.txt,"Up to date
+CSA: [92mTrue
+[0mBasic: [92mTrue
+[0mreduced 2-exhaustive: [92mTrue
+[0mreduced 2-safe: [92mTrue
+[0m"
+tests/benchmarks/1Paxos2P1A.txt,"Up to date
+CSA: [92mTrue
+[0mreduced 1-OBI: [92mTrue
+[0mreduced 1-SIBI: [91mFalse
+[0mreduced 1-exhaustive: [92mTrue
+[0mreduced 1-safe: [92mTrue
+[0m"
+tests/benchmarks/1Paxos2P1A.txt,"Up to date
+CSA: [92mTrue
+[0mreduced 2-OBI: [92mTrue
+[0mreduced 2-SIBI: [91mFalse
+[0mreduced 2-exhaustive: [92mTrue
+[0mreduced 2-safe: [92mTrue
+[0m"

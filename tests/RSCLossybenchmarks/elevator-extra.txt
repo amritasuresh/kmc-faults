@@ -1,0 +1,116 @@
+scm elevatorextra :
+nb_channels = 5 ;
+parameters:
+real reset ;
+real doorOpened ;
+real doorClosed ;
+real closeDoor ;
+real stop ;
+real openDoor ;
+real doorStopped ;
+real tau ;
+real open ;
+real close ;
+automaton A0 :
+initial : 0
+state 0 :
+to 0 : when true, 0 ! openDoor;
+to 0 : when true, 0 ! closeDoor;
+automaton A1 :
+initial : 2
+state 0 :
+to 4 : when true, 1 ! doorClosed;
+to 1 : when true, 2 ! tau;
+state 1 :
+to 1 : when true, 4 ? tau;
+to 1 : when true, 3 ? stop;
+to 5 : when true, 3 ? stop;
+to 1 : when true, 3 ? close;
+to 1 : when true, 4 ? stop;
+to 1 : when true, 3 ? open;
+to 1 : when true, 4 ? close;
+to 1 : when true, 4 ? reset;
+to 0 : when true, 4 ? tau;
+to 1 : when true, 3 ? reset;
+to 1 : when true, 3 ? tau;
+to 1 : when true, 4 ? open;
+state 2 :
+to 3 : when true, 3 ? open;
+to 2 : when true, 3 ? reset;
+to 2 : when true, 3 ? stop;
+to 2 : when true, 3 ? tau;
+to 2 : when true, 3 ? close;
+to 0 : when true, 3 ? close;
+to 2 : when true, 3 ? open;
+state 3 :
+to 4 : when true, 1 ! doorOpened;
+state 4 :
+to 4 : when true, 3 ? tau;
+to 4 : when true, 3 ? reset;
+to 4 : when true, 3 ? stop;
+to 4 : when true, 3 ? close;
+to 2 : when true, 3 ? reset;
+to 4 : when true, 3 ? open;
+state 5 :
+to 3 : when true, 1 ! doorStopped;
+automaton A2 :
+initial : 0
+state 0 :
+to 1 : when true, 3 ! reset;
+state 1 :
+to 1 : when true, 0 ? doorClosed;
+to 1 : when true, 0 ? openDoor;
+to 1 : when true, 0 ? doorStopped;
+to 1 : when true, 0 ? closeDoor;
+to 5 : when true, 0 ? openDoor;
+to 1 : when true, 0 ? doorOpened;
+state 2 :
+to 3 : when true, 3 ! close;
+state 3 :
+to 3 : when true, 1 ? openDoor;
+to 3 : when true, 0 ? doorOpened;
+to 3 : when true, 1 ? closeDoor;
+to 3 : when true, 1 ? doorClosed;
+to 3 : when true, 0 ? doorStopped;
+to 3 : when true, 1 ? doorOpened;
+to 7 : when true, 0 ? openDoor;
+to 0 : when true, 1 ? doorClosed;
+to 3 : when true, 0 ? openDoor;
+to 3 : when true, 1 ? doorStopped;
+to 3 : when true, 0 ? doorClosed;
+to 3 : when true, 0 ? closeDoor;
+state 4 :
+to 2 : when true, 3 ! reset;
+state 5 :
+to 6 : when true, 3 ! open;
+state 6 :
+to 6 : when true, 1 ? doorOpened;
+to 6 : when true, 1 ? doorClosed;
+to 6 : when true, 1 ? closeDoor;
+to 6 : when true, 1 ? openDoor;
+to 4 : when true, 1 ? doorOpened;
+to 6 : when true, 1 ? doorStopped;
+state 7 :
+to 8 : when true, 3 ! stop;
+state 8 :
+to 8 : when true, 1 ? doorOpened;
+to 8 : when true, 0 ? doorOpened;
+to 4 : when true, 1 ? doorOpened;
+to 8 : when true, 1 ? closeDoor;
+to 8 : when true, 1 ? doorStopped;
+to 8 : when true, 0 ? closeDoor;
+to 8 : when true, 0 ? doorClosed;
+to 8 : when true, 1 ? doorClosed;
+to 8 : when true, 1 ? openDoor;
+to 8 : when true, 0 ? openDoor;
+to 8 : when true, 0 ? doorStopped;
+to 6 : when true, 1 ? doorStopped;
+to 0 : when true, 1 ? doorClosed;
+automaton A3 :
+initial : 0
+state 0 :
+to 0 : when true, 2 ? tau;
+automaton A4 :
+initial : 0
+state 0 :
+to 0 : when true, 4 ! tau;

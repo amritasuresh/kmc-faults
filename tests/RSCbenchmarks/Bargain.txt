@@ -1,0 +1,30 @@
+scm Bargain :
+nb_channels = 3 ;
+parameters:
+real happy ;
+real price ;
+real haggle ;
+real info ;
+automaton A0 :
+initial : 0
+state 0 :
+to 1 : when true, 0 ! haggle;
+to 2 : when true, 0 ! happy;
+state 1 :
+to 0 : when true, 2 ? price;
+state 2 :
+to 3 : when true, 1 ! info;
+state 3 :
+automaton A1 :
+initial : 0
+state 0 :
+to 2 : when true, 0 ? happy;
+to 1 : when true, 0 ? haggle;
+state 1 :
+to 0 : when true, 2 ! price;
+state 2 :
+automaton A2 :
+initial : 0
+state 0 :
+to 1 : when true, 1 ? info;
+state 1 :

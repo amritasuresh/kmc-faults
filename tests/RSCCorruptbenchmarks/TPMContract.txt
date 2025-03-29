@@ -1,0 +1,47 @@
+scm TPMContract :
+nb_channels = 2 ;
+parameters:
+real TpmStatus ;
+real SendComplete ;
+real AckStartSend ;
+real send ;
+real GetTpmStatus ;
+automaton A0 :
+initial : 2
+state 0 :
+to 1 : when true, 0 ! GetTpmStatus;
+to 1 : when true, 0 ! send;
+state 1 :
+to 4 : when true, 1 ? SendComplete;
+to 0 : when true, 1 ? TpmStatus;
+state 2 :
+to 4 : when true, 0 ! GetTpmStatus;
+to 3 : when true, 0 ! send;
+to 3 : when true, 0 ! GetTpmStatus;
+to 4 : when true, 0 ! send;
+state 3 :
+to 0 : when true, 1 ? AckStartSend;
+state 4 :
+to 2 : when true, 1 ? TpmStatus;
+automaton A1 :
+initial : 2
+state 0 :
+to 1 : when true, 0 ? GetTpmStatus;
+state 1 :
+to 4 : when true, 1 ! SendComplete;
+to 4 : when true, 1 ! AckStartSend;
+to 0 : when true, 1 ! SendComplete;
+to 0 : when true, 1 ! AckStartSend;
+to 0 : when true, 1 ! TpmStatus;
+to 4 : when true, 1 ! TpmStatus;
+state 2 :
+to 4 : when true, 0 ? GetTpmStatus;
+to 3 : when true, 0 ? send;
+state 3 :
+to 0 : when true, 1 ! TpmStatus;
+to 0 : when true, 1 ! AckStartSend;
+to 0 : when true, 1 ! SendComplete;
+state 4 :
+to 2 : when true, 1 ! AckStartSend;
+to 2 : when true, 1 ! SendComplete;
+to 2 : when true, 1 ! TpmStatus;

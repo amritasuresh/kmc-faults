@@ -1,0 +1,117 @@
+scm Logistic :
+nb_channels = 6 ;
+parameters:
+real AcceptPOandDeliverySchedule ;
+real ConfirmationofDeliverySchedule ;
+real FinalizedPOandDeliverySchedule ;
+real POandDeliveryScheduleMods ;
+real DeliverCheckPointRequest ;
+real UpdatePOandDeliverySchedule ;
+real OrderDeliveryVariations ;
+real PlannedOrderVariations ;
+real ShippingDone ;
+real DeliverItem ;
+real ProvideItem ;
+automaton A0 :
+initial : 0
+state 0 :
+to 1 : when true, 0 ! PlannedOrderVariations;
+state 1 :
+to 4 : when true, 3 ? OrderDeliveryVariations;
+to 1 : when true, 3 ? DeliverCheckPointRequest;
+to 1 : when true, 3 ? DeliverItem;
+to 1 : when true, 3 ? OrderDeliveryVariations;
+to 1 : when true, 3 ? POandDeliveryScheduleMods;
+to 1 : when true, 3 ? AcceptPOandDeliverySchedule;
+state 2 :
+to 3 : when true, 0 ! FinalizedPOandDeliverySchedule;
+state 3 :
+state 4 :
+to 4 : when true, 3 ? DeliverCheckPointRequest;
+to 5 : when true, 3 ? DeliverCheckPointRequest;
+to 4 : when true, 3 ? POandDeliveryScheduleMods;
+to 4 : when true, 3 ? DeliverItem;
+to 4 : when true, 3 ? OrderDeliveryVariations;
+to 4 : when true, 3 ? AcceptPOandDeliverySchedule;
+state 5 :
+to 6 : when true, 2 ! ProvideItem;
+to 8 : when true, 2 ! ShippingDone;
+state 6 :
+to 5 : when true, 5 ? DeliverItem;
+to 6 : when true, 5 ? AcceptPOandDeliverySchedule;
+to 6 : when true, 5 ? OrderDeliveryVariations;
+to 6 : when true, 5 ? POandDeliveryScheduleMods;
+to 6 : when true, 5 ? DeliverItem;
+to 6 : when true, 5 ? DeliverCheckPointRequest;
+state 7 :
+to 7 : when true, 4 ? OrderDeliveryVariations;
+to 7 : when true, 4 ? DeliverItem;
+to 8 : when true, 4 ? DeliverItem;
+to 7 : when true, 4 ? AcceptPOandDeliverySchedule;
+to 7 : when true, 4 ? POandDeliveryScheduleMods;
+to 7 : when true, 4 ? DeliverCheckPointRequest;
+state 8 :
+to 7 : when true, 1 ! ProvideItem;
+to 9 : when true, 1 ! ConfirmationofDeliverySchedule;
+state 9 :
+to 10 : when true, 0 ! UpdatePOandDeliverySchedule;
+state 10 :
+to 10 : when true, 3 ? DeliverItem;
+to 11 : when true, 3 ? POandDeliveryScheduleMods;
+to 10 : when true, 3 ? DeliverCheckPointRequest;
+to 10 : when true, 3 ? OrderDeliveryVariations;
+to 10 : when true, 3 ? POandDeliveryScheduleMods;
+to 10 : when true, 3 ? AcceptPOandDeliverySchedule;
+state 11 :
+to 11 : when true, 3 ? DeliverCheckPointRequest;
+to 11 : when true, 3 ? AcceptPOandDeliverySchedule;
+to 11 : when true, 3 ? POandDeliveryScheduleMods;
+to 11 : when true, 3 ? OrderDeliveryVariations;
+to 2 : when true, 3 ? AcceptPOandDeliverySchedule;
+to 11 : when true, 3 ? DeliverItem;
+automaton A1 :
+initial : 0
+state 0 :
+to 1 : when true, 0 ? PlannedOrderVariations;
+to 0 : when true, 0 ? FinalizedPOandDeliverySchedule;
+to 0 : when true, 0 ? PlannedOrderVariations;
+to 0 : when true, 0 ? UpdatePOandDeliverySchedule;
+state 1 :
+to 4 : when true, 3 ! OrderDeliveryVariations;
+state 2 :
+to 2 : when true, 0 ? UpdatePOandDeliverySchedule;
+to 2 : when true, 0 ? PlannedOrderVariations;
+to 2 : when true, 0 ? FinalizedPOandDeliverySchedule;
+to 3 : when true, 0 ? FinalizedPOandDeliverySchedule;
+state 3 :
+state 4 :
+to 5 : when true, 3 ! DeliverCheckPointRequest;
+state 5 :
+to 5 : when true, 0 ? UpdatePOandDeliverySchedule;
+to 6 : when true, 0 ? UpdatePOandDeliverySchedule;
+to 5 : when true, 0 ? PlannedOrderVariations;
+to 5 : when true, 0 ? FinalizedPOandDeliverySchedule;
+state 6 :
+to 7 : when true, 3 ! POandDeliveryScheduleMods;
+state 7 :
+to 2 : when true, 3 ! AcceptPOandDeliverySchedule;
+automaton A2 :
+initial : 0
+state 0 :
+to 1 : when true, 1 ? ProvideItem;
+to 0 : when true, 1 ? ConfirmationofDeliverySchedule;
+to 2 : when true, 1 ? ConfirmationofDeliverySchedule;
+to 0 : when true, 1 ? ProvideItem;
+state 1 :
+to 0 : when true, 4 ! DeliverItem;
+state 2 :
+automaton A3 :
+initial : 0
+state 0 :
+to 2 : when true, 2 ? ShippingDone;
+to 1 : when true, 2 ? ProvideItem;
+to 0 : when true, 2 ? ShippingDone;
+to 0 : when true, 2 ? ProvideItem;
+state 1 :
+to 0 : when true, 5 ! DeliverItem;
+state 2 :

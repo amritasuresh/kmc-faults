@@ -1,0 +1,71 @@
+scm elevatorcsa :
+nb_channels = 3 ;
+parameters:
+real close ;
+real doorStopped ;
+real doorClosed ;
+real openDoor ;
+real closeDoor ;
+real open ;
+real stop ;
+real reset ;
+real doorOpened ;
+automaton A0 :
+initial : 0
+state 0 :
+to 0 : when true, 0 ! openDoor;
+to 0 : when true, 0 ! closeDoor;
+automaton A1 :
+initial : 1
+state 0 :
+to 3 : when true, 1 ! doorOpened;
+to 3 : when true, 1 ! doorClosed;
+state 1 :
+to 1 : when true, 2 ? reset;
+to 0 : when true, 2 ? close;
+to 1 : when true, 2 ? stop;
+to 2 : when true, 2 ? open;
+state 2 :
+to 3 : when true, 1 ! doorClosed;
+to 3 : when true, 1 ! doorOpened;
+state 3 :
+to 3 : when true, 2 ? close;
+to 3 : when true, 2 ? stop;
+to 3 : when true, 2 ? open;
+to 1 : when true, 2 ? reset;
+automaton A2 :
+initial : 0
+state 0 :
+to 1 : when true, 2 ! close;
+to 1 : when true, 2 ! open;
+to 1 : when true, 2 ! stop;
+to 1 : when true, 2 ! reset;
+state 1 :
+to 4 : when true, 0 ? openDoor;
+to 1 : when true, 0 ? closeDoor;
+state 2 :
+to 6 : when true, 2 ! stop;
+to 6 : when true, 2 ! reset;
+to 6 : when true, 2 ! close;
+to 6 : when true, 2 ! open;
+state 3 :
+to 2 : when true, 2 ! close;
+to 2 : when true, 2 ! reset;
+to 2 : when true, 2 ! stop;
+to 2 : when true, 2 ! open;
+state 4 :
+to 5 : when true, 2 ! close;
+to 5 : when true, 2 ! stop;
+to 5 : when true, 2 ! open;
+to 5 : when true, 2 ! reset;
+state 5 :
+to 3 : when true, 1 ? doorOpened;
+state 6 :
+to 7 : when true, 2 ! close;
+to 7 : when true, 2 ! stop;
+to 7 : when true, 2 ! reset;
+to 7 : when true, 2 ! open;
+state 7 :
+to 3 : when true, 1 ? doorOpened;
+to 0 : when true, 1 ? doorClosed;
+to 4 : when true, 1 ? doorStopped;

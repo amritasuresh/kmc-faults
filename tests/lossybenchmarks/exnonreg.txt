@@ -1,0 +1,36 @@
+.outputs
+.state graph
+q2 2 ! d q3
+q1 0 ? a q1
+q1 0 ? a q2
+q1 0 ? e q1
+q3 3 ? a q3
+q3 3 ? e q1
+q3 3 ? e q3
+.marking q1
+.end
+
+.outputs
+.state graph
+q3 3 ! f q1
+q1 1 ? b q1
+q1 1 ? d q1
+q1 1 ? d q2
+q2 0 ? b q2
+q2 0 ? b q3
+q2 0 ? d q2
+.marking q1
+.end
+
+.outputs
+.state graph
+q3 1 ! e q1
+q1 2 ? c q1
+q1 2 ? f q1
+q1 2 ? f q2
+q2 0 ? c q2
+q2 0 ? c q3
+q2 0 ? f q2
+.marking q1
+.end
+

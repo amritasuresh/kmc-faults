@@ -1,0 +1,36 @@
+scm FilterCollaboration :
+nb_channels = 2 ;
+parameters:
+real noMoreItems ;
+real itemToBeFiltered ;
+real newFilterRequest ;
+real ok ;
+real remove ;
+automaton A0 :
+initial : 2
+state 0 :
+to 2 : when true, 1 ? noMoreItems;
+to 0 : when true, 1 ? noMoreItems;
+to 1 : when true, 1 ? itemToBeFiltered;
+to 0 : when true, 1 ? itemToBeFiltered;
+state 1 :
+to 0 : when true, 0 ! ok;
+to 0 : when true, 0 ! remove;
+state 2 :
+to 0 : when true, 0 ! newFilterRequest;
+automaton A1 :
+initial : 2
+state 0 :
+to 2 : when true, 1 ! noMoreItems;
+to 1 : when true, 1 ! itemToBeFiltered;
+state 1 :
+to 1 : when true, 0 ? newFilterRequest;
+to 1 : when true, 0 ? remove;
+to 0 : when true, 0 ? ok;
+to 0 : when true, 0 ? remove;
+to 1 : when true, 0 ? ok;
+state 2 :
+to 0 : when true, 0 ? newFilterRequest;
+to 2 : when true, 0 ? newFilterRequest;
+to 2 : when true, 0 ? remove;
+to 2 : when true, 0 ? ok;

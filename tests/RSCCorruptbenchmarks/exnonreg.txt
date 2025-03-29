@@ -1,0 +1,33 @@
+scm exnonreg :
+nb_channels = 8 ;
+parameters:
+real d ;
+real b ;
+real e ;
+real f ;
+real c ;
+real a ;
+automaton A0 :
+initial : 0
+state 0 :
+to 1 : when true, 0 ? a;
+state 1 :
+to 2 : when true, 2 ! d;
+state 2 :
+to 0 : when true, 7 ? e;
+automaton A1 :
+initial : 0
+state 0 :
+to 1 : when true, 3 ? d;
+state 1 :
+to 2 : when true, 1 ? b;
+state 2 :
+to 0 : when true, 4 ! f;
+automaton A2 :
+initial : 0
+state 0 :
+to 1 : when true, 6 ? f;
+state 1 :
+to 2 : when true, 2 ? c;
+state 2 :
+to 0 : when true, 5 ! e;

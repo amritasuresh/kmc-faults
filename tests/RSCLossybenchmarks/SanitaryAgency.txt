@@ -1,0 +1,126 @@
+scm SanitaryAgency :
+nb_channels = 9 ;
+parameters:
+real recMoneyPossT ;
+real paymentT ;
+real paymentM ;
+real request ;
+real provInf ;
+real acceptance ;
+real provT ;
+real paymentPrivateFee ;
+real refusal ;
+real req ;
+real askInfo ;
+real done ;
+real paymentPublicFee ;
+real provM ;
+real recMoneyPossM ;
+automaton A0 :
+initial : 0
+state 0 :
+to 1 : when true, 0 ! request;
+state 1 :
+to 1 : when true, 2 ? acceptance;
+to 1 : when true, 2 ? refusal;
+to 2 : when true, 2 ? askInfo;
+to 1 : when true, 2 ? provM;
+to 1 : when true, 2 ? askInfo;
+to 1 : when true, 2 ? provT;
+state 2 :
+to 3 : when true, 0 ! provInf;
+state 3 :
+to 3 : when true, 2 ? refusal;
+to 3 : when true, 2 ? askInfo;
+to 4 : when true, 2 ? acceptance;
+to 3 : when true, 2 ? acceptance;
+to 3 : when true, 2 ? provT;
+to 0 : when true, 2 ? refusal;
+to 3 : when true, 2 ? provM;
+state 4 :
+to 5 : when true, 5 ? provT;
+to 5 : when true, 5 ? provM;
+to 4 : when true, 5 ? provT;
+to 4 : when true, 5 ? acceptance;
+to 4 : when true, 5 ? provM;
+to 4 : when true, 5 ? askInfo;
+to 4 : when true, 5 ? refusal;
+state 5 :
+to 0 : when true, 1 ! paymentPrivateFee;
+automaton A1 :
+initial : 0
+state 0 :
+to 1 : when true, 0 ? request;
+to 0 : when true, 0 ? request;
+to 0 : when true, 0 ? provInf;
+to 0 : when true, 0 ? done;
+state 1 :
+to 2 : when true, 2 ! askInfo;
+state 2 :
+to 2 : when true, 0 ? done;
+to 2 : when true, 0 ? provInf;
+to 3 : when true, 0 ? provInf;
+to 2 : when true, 0 ? request;
+state 3 :
+to 0 : when true, 2 ! refusal;
+to 4 : when true, 2 ! acceptance;
+state 4 :
+to 5 : when true, 3 ! req;
+state 5 :
+to 6 : when true, 4 ! paymentPublicFee;
+state 6 :
+to 6 : when true, 7 ? request;
+to 6 : when true, 7 ? done;
+to 0 : when true, 7 ? done;
+to 6 : when true, 7 ? provInf;
+automaton A2 :
+initial : 0
+state 0 :
+to 1 : when true, 3 ? req;
+to 0 : when true, 3 ? paymentM;
+to 0 : when true, 3 ? paymentT;
+to 0 : when true, 3 ? req;
+state 1 :
+to 3 : when true, 5 ! provT;
+to 2 : when true, 5 ! provM;
+state 2 :
+to 4 : when true, 6 ! recMoneyPossM;
+state 3 :
+to 5 : when true, 6 ! recMoneyPossT;
+state 4 :
+to 0 : when true, 8 ? paymentM;
+to 4 : when true, 8 ? req;
+to 4 : when true, 8 ? paymentT;
+to 4 : when true, 8 ? paymentM;
+state 5 :
+to 5 : when true, 8 ? paymentT;
+to 0 : when true, 8 ? paymentT;
+to 5 : when true, 8 ? paymentM;
+to 5 : when true, 8 ? req;
+automaton A3 :
+initial : 0
+state 0 :
+to 0 : when true, 6 ? paymentPrivateFee;
+to 1 : when true, 6 ? recMoneyPossT;
+to 0 : when true, 6 ? recMoneyPossM;
+to 4 : when true, 6 ? recMoneyPossM;
+to 0 : when true, 6 ? recMoneyPossT;
+to 0 : when true, 6 ? paymentPublicFee;
+state 1 :
+to 2 : when true, 8 ! paymentT;
+state 2 :
+to 2 : when true, 4 ? paymentPublicFee;
+to 2 : when true, 4 ? paymentPrivateFee;
+to 2 : when true, 4 ? recMoneyPossT;
+to 5 : when true, 4 ? paymentPublicFee;
+to 2 : when true, 4 ? recMoneyPossM;
+state 3 :
+to 0 : when true, 7 ! done;
+state 4 :
+to 2 : when true, 8 ! paymentM;
+state 5 :
+to 5 : when true, 1 ? recMoneyPossM;
+to 5 : when true, 1 ? paymentPrivateFee;
+to 5 : when true, 1 ? recMoneyPossT;
+to 5 : when true, 1 ? paymentPublicFee;
+to 3 : when true, 1 ? paymentPrivateFee;

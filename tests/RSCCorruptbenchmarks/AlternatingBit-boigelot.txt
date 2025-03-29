@@ -1,0 +1,25 @@
+scm AlternatingBitboigelot :
+nb_channels = 1 ;
+parameters:
+real d0 ;
+real d1 ;
+real a1 ;
+real a0 ;
+automaton A0 :
+initial : 0
+state 0 :
+to 5 : when true, 0 ? d1;
+to 1 : when true, 0 ? d0;
+state 1 :
+to 2 : when true, 0 ! a0;
+to 2 : when true, 0 ! a1;
+state 2 :
+to 3 : when true, 0 ? d1;
+to 4 : when true, 0 ? d0;
+state 3 :
+to 0 : when true, 0 ! a0;
+to 0 : when true, 0 ! a1;
+state 4 :
+to 2 : when true, 0 ! a0;
+to 2 : when true, 0 ! a1;
+state 5 :
